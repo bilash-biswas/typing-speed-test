@@ -1,0 +1,157 @@
+/* Import Google Fonts for Bangla and English */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-bangla: 'Hind Siliguri', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-english: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-bangla);
+  background-color: #f8fafc;
+  color: #1e293b;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-english {
+  font-family: var(--font-english);
+}
+
+.font-bangla {
+  font-family: var(--font-bangla);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Dark Mode Scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Word Highlight Mode Styles */
+.word {
+  position: relative;
+  display: inline-block;
+  padding: 1px 4px;
+  margin: 0 1.5px;
+  border-radius: 5px;
+  transition: all 0.12s ease;
+}
+
+.word.active {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.word.correct {
+  color: #15803d;
+  background-color: #dcfce7;
+}
+
+.word.incorrect {
+  color: #b91c1c;
+  background-color: #fee2e2;
+  text-decoration: underline wavy #ef4444;
+}
+
+/* Dark Mode Word Highlights & Passage Text */
+.dark #passageDisplay,
+.dark #examPassageText,
+.dark #wordsContainer {
+  color: #f1f5f9 !important;
+}
+
+.dark .word {
+  color: #e2e8f0;
+}
+
+.dark .word.active {
+  background-color: rgba(37, 99, 235, 0.35);
+  color: #93c5fd;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.dark .word.correct {
+  color: #86efac;
+  background-color: rgba(22, 101, 52, 0.45);
+}
+
+.dark .word.incorrect {
+  color: #fca5a5;
+  background-color: rgba(153, 27, 27, 0.5);
+  text-decoration: underline wavy #f87171;
+}
+
+/* Toast Notification */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(100px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#toast.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Print Styles for Official Evaluation Certificate / Marksheet */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  #certificateArea, #certificateArea * {
+    visibility: visible;
+  }
+
+  #certificateArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 40px;
+    background: white !important;
+    display: block !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

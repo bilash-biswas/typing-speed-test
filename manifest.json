@@ -1,0 +1,16 @@
+{
+  "name": "BCC Typing Speed Test - বিসিসি টাইপিং স্পিড টেস্ট",
+  "short_name": "BCCTyping",
+  "description": "বাংলাদেশ কম্পিউটার কাউন্সিল (বিসিসি) এবং সরকারি নিয়োগ পরীক্ষার স্ট্যান্ডার্ড টাইপিং স্পিড টেস্ট ও প্র্যাকটিস অ্যাপ্লিকেশন।",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

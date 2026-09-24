@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>বিসিসি স্ট্যান্ডার্ড টাইপিং স্পিড টেস্ট (BCC Typing Test Portal)</title>
+  <meta name="description" content="বাংলাদেশ কম্পিউটার কাউন্সিল (বিসিসি) এবং সরকারি নিয়োগ পরীক্ষার স্ট্যান্ডার্ড টাইপিং স্পিড টেস্ট ও প্র্যাকটিস অ্যাপ্লিকেশন।">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%22100%22%20height=%22100%22><text y=%22.9em%22 font-size=%2290%22>⌨️</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Google Fonts: Hind Siliguri (Bangla) & Inter (English) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN with Dark Mode Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#0f172a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css?v=2.0.0">
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-100 flex flex-col py-6 sm:py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
+
+  <!-- Main Container -->
+  <div class="max-w-6xl w-full mx-auto flex-1 flex flex-col justify-start">
+    
+    <!-- Top Header -->
+    <header class="mb-6 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+          <span id="appTitle">বিসিসি টাইপিং স্পিড টেস্ট</span>
+        </h1>
+        <p id="appSubtitle" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">বাংলাদেশ কম্পিউটার কাউন্সিল (BCC) ও সরকারি নিয়োগ পরীক্ষার স্ট্যান্ডার্ড পোর্টাল</p>
+      </div>
+
+      <!-- Quick Action Utilities -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Personal Best Badge -->
+        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-full text-xs text-amber-800 dark:text-amber-300 font-semibold shadow-xs">
+          <span>🏆 সেরা গতি:</span>
+          <span id="personalBestBadge" class="text-amber-900 dark:text-amber-200 font-bold tabular-nums">০ WPM</span>
+        </div>
+
+        <!-- History Button -->
+        <button id="historyBtn" title="পূর্ববর্তী ফলাফল ইতিহাস" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-1.5 shadow-xs">
+          <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>ইতিহাস</span>
+        </button>
+
+        <!-- Bangla Conjuncts Guide Button -->
+        <button id="conjunctsBtn" title="যুক্তবর্ণ লেখার নিয়ম" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-blue-200 dark:border-blue-800 bg-blue-50/70 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 transition-all flex items-center gap-1.5 shadow-xs">
+          <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          <span>যুক্তবর্ণ</span>
+        </button>
+
+        <!-- Audio Click Toggle in Header -->
+        <button id="soundToggleBtn" title="কিবোর্ড সাউন্ড" class="p-2 sm:p-2.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-xs">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          </svg>
+        </button>
+
+        <!-- Dark Mode Toggle Button -->
+        <button id="themeToggleBtn" title="ডার্ক মোড টগল করুন" class="p-2 sm:p-2.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-xs">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg id="themeSunIcon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg id="themeMoonIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Card -->
+    <main class="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-200/80 dark:border-slate-800 p-5 sm:p-8 flex flex-col gap-5 transition-colors duration-200">
+      
+      <!-- Top Control Bar (Pills & Real-time Stats in Single Line) -->
+      <div class="flex items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800 flex-nowrap overflow-x-auto">
+        
+        <!-- Controls Group (Left) -->
+        <div class="flex items-center gap-2 sm:gap-2.5 flex-nowrap flex-shrink-0">
+          
+          <!-- Language Toggle -->
+          <div class="inline-flex p-1 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200/60 dark:border-slate-700 shadow-inner">
+            <button id="langBnBtn" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
+              বাংলা
+            </button>
+            <button id="langEnBtn" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all bg-blue-600 text-white shadow-sm">
+              English
+            </button>
+          </div>
+
+          <!-- Mode Toggle -->
+          <div class="inline-flex p-1 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200/60 dark:border-slate-700 shadow-inner">
+            <button id="modeHighlightBtn" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
+              ওয়ার্ড হাইলাইট মোড
+            </button>
+            <button id="modeExamBtn" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all bg-blue-600 text-white shadow-sm">
+              বিসিসি এক্সাম মোড
+            </button>
+          </div>
+
+          <!-- Duration Dropdown -->
+          <div class="relative inline-block">
+            <select id="durationSelect" class="appearance-none bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs sm:text-sm font-medium py-2 pl-3.5 pr-8 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer shadow-sm transition-all">
+              <option value="60">১ মিনিট</option>
+              <option value="120">২ মিনিট</option>
+              <option value="300" selected>৫ মিনিট (সরকারি টেস্ট)</option>
+              <option value="600">১০ মিনিট</option>
+              <option value="900">১৫ মিনিট</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-slate-500 dark:text-slate-400">
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Custom Text Button -->
+          <button id="customTextBtn" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-emerald-500 dark:border-emerald-600 text-emerald-700 dark:text-emerald-400 bg-emerald-50/60 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition-all shadow-sm">
+            কাস্টম লেখা
+          </button>
+
+          <!-- Random Passage Button -->
+          <button id="nextPassageBtn" title="যেকোনো একটি এলোমেলো অনুচ্ছেদ লোড করুন" class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 bg-blue-50/70 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-all shadow-sm flex items-center gap-1.5">
+            <span id="nextPassageLabel">🎲 অন্য অনুচ্ছেদ</span>
+            <span id="passageIndicator" class="text-[11px] opacity-80 font-bold tabular-nums">(১/২০)</span>
+          </button>
+        </div>
+
+        <!-- Live Metrics Group (Right) -->
+        <div class="flex items-center gap-2 sm:gap-2.5 flex-nowrap flex-shrink-0 ml-auto">
+          
+          <!-- Timer Metric -->
+          <div class="bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 rounded-xl px-3 py-1.5 text-center min-w-[76px]">
+            <span class="block text-[10px] sm:text-[11px] font-medium text-slate-400 dark:text-slate-400">সময় বাকি</span>
+            <span id="timerDisplay" class="text-base sm:text-lg font-bold tabular-nums text-blue-600 dark:text-blue-400">05:00</span>
+          </div>
+
+          <!-- WPM Speed -->
+          <div class="bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 rounded-xl px-3 py-1.5 text-center min-w-[62px]">
+            <span class="block text-[10px] sm:text-[11px] font-medium text-slate-400 dark:text-slate-400">WPM স্পিড</span>
+            <span id="wpmDisplay" class="text-base sm:text-lg font-bold tabular-nums text-slate-800 dark:text-slate-100">0</span>
+          </div>
+
+          <!-- Accuracy -->
+          <div class="bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 rounded-xl px-3 py-1.5 text-center min-w-[62px]">
+            <span class="block text-[10px] sm:text-[11px] font-medium text-slate-400 dark:text-slate-400">নির্ভুলতা</span>
+            <span id="accuracyDisplay" class="text-base sm:text-lg font-bold tabular-nums text-slate-800 dark:text-slate-100">১০০%</span>
+          </div>
+
+          <!-- Reset Button -->
+          <button id="resetBtn" title="রিসেট করুন" class="h-[46px] w-[42px] flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition-all shadow-xs">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Exam Mode Notice Banner -->
+      <div id="examBanner" class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700 rounded-xl px-4 py-2.5">
+        <span class="bg-slate-800 dark:bg-slate-700 text-white text-[11px] sm:text-xs font-semibold px-2.5 py-1 rounded">
+          বিসিসি এক্সাম মোড
+        </span>
+        <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          কোনো রঙ বা হাইলাইট দেখানো হবে না। পরীক্ষা শেষ হলে সম্পূর্ণ অডিট ও নির্ভুল সমাধান প্রদর্শিত হবে।
+        </span>
+      </div>
+
+      <!-- Text Passage Display Box -->
+      <div class="relative">
+        <div id="passageDisplay" class="bg-slate-50/60 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 min-h-[160px] max-h-[220px] overflow-y-auto leading-relaxed select-none transition-all shadow-inner">
+          <!-- Text rendered dynamically by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Typing Input Field -->
+      <div>
+        <textarea id="typingInput" 
+          rows="5"
+          placeholder="টাইপ করা শুরু করলেই স্বয়ংক্রিয়ভাবে সময় ও গতি গণনা চালু হবে..."
+          class="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 text-base sm:text-lg text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-950/50 focus:border-blue-500 transition-all leading-relaxed shadow-sm resize-none"></textarea>
+      </div>
+
+      <!-- Footer Info and Action Button -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-slate-100 dark:border-slate-800">
+        <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+          <span class="font-semibold text-slate-700 dark:text-slate-300" id="formulaLabel">* বিসিসি গতি নির্ণায়ক ফর্মুলা:</span>
+          <span id="formulaText">(সঠিক অক্ষরের সংখ্যা + স্পেস) ÷ ৫ ÷ পরীক্ষার মোট সময় (মিনিট)।</span>
+        </div>
+
+        <button id="submitBtn" class="w-full sm:w-auto px-6 py-2.5 rounded-xl font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 transition-all shadow-sm">
+          পরীক্ষা জমা দিন (Submit)
+        </button>
+      </div>
+
+    </main>
+
+    <!-- Footer Attribution -->
+    <footer class="mt-8 text-center text-xs text-slate-400 dark:text-slate-500">
+      <p>বাংলাদেশ কম্পিউটার কাউন্সিল (বিসিসি) মানদণ্ড টাইপিং টেস্ট ও পরীক্ষা পোর্টাল &copy; ২০২৬ | সর্বস্বত্ব সংরক্ষিত</p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="bg-slate-900 dark:bg-slate-800 text-white text-xs sm:text-sm font-medium px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2 border border-slate-700 dark:border-slate-600">
+    <span id="toastMsg">বিজ্ঞপ্তি বার্তা</span>
+  </div>
+
+  <!-- Custom Text Modal -->
+  <div id="customModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 dark:border-slate-800">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white">কাস্টম অনুচ্ছেদ যুক্ত করুন</h3>
+        <button id="closeCustomBtn" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      
+      <div class="mt-4">
+        <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">এখানে আপনার পছন্দের অনুচ্ছেদটি পেস্ট করুন:</label>
+        <textarea id="customTextInput" rows="6" placeholder="আপনার বাংলা বা ইংরেজি অনুচ্ছেদ লিখুন..." class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+      </div>
+
+      <div class="mt-5 flex justify-end gap-2">
+        <button onclick="document.getElementById('customModal').classList.add('hidden')" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">বাতিল</button>
+        <button id="saveCustomBtn" class="px-5 py-2 rounded-xl text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm">প্রয়োগ করুন</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Exam Audit & Result Modal -->
+  <div id="resultModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-800 max-h-[90vh] overflow-y-auto">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">পরীক্ষার ফলাফল ও মূল্যায়ন</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">বাংলাদেশ কম্পিউটার কাউন্সিল (বিসিসি) মানদণ্ড অডিট রিপোর্ট</p>
+        </div>
+        <button id="closeResultBtn" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Candidate Name Field for Printable Certificate -->
+      <div class="mt-4 bg-blue-50/60 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/60 rounded-2xl p-3.5 flex flex-col sm:flex-row items-center gap-2.5">
+        <label for="candidateNameInput" class="text-xs font-semibold text-blue-950 dark:text-blue-300 whitespace-nowrap">পরীক্ষার্থীর নাম (প্রশংসাপত্রের জন্য):</label>
+        <input type="text" id="candidateNameInput" placeholder="আপনার নাম লিখুন..." class="w-full bg-white dark:bg-slate-950 border border-blue-200 dark:border-blue-800 text-slate-800 dark:text-slate-100 rounded-xl px-3 py-1.5 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Qualification Status Badge -->
+      <div class="my-5 text-center">
+        <div id="resStatusBadge" class="inline-flex items-center px-4 py-1.5 rounded-full text-base font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700">
+          উত্তীর্ণ (Qualified)
+        </div>
+        <p id="resBenchmarkNote" class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+          সরকারি মানদণ্ড: বাংলায় সর্বনিম্ন ২০ শব্দ/মিনিট এবং ইংরেজিতে ২৮ শব্দ/মিনিট।
+        </p>
+      </div>
+
+      <!-- Core Metrics Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-5">
+        <div class="bg-slate-50 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700 rounded-2xl p-3 text-center">
+          <span class="block text-xs text-slate-400 font-medium">নেট WPM (আসল গতি)</span>
+          <span id="resNetWpm" class="text-2xl font-black text-blue-600 dark:text-blue-400">0</span>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700 rounded-2xl p-3 text-center">
+          <span class="block text-xs text-slate-400 font-medium">গ্রস WPM</span>
+          <span id="resGrossWpm" class="text-2xl font-bold text-slate-700 dark:text-slate-200">0</span>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700 rounded-2xl p-3 text-center">
+          <span class="block text-xs text-slate-400 font-medium">নির্ভুলতা</span>
+          <span id="resAccuracy" class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">100%</span>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700 rounded-2xl p-3 text-center">
+          <span class="block text-xs text-slate-400 font-medium">ব্যয়িত সময়</span>
+          <span id="resTimeTaken" class="text-2xl font-bold text-slate-700 dark:text-slate-200">0m 0s</span>
+        </div>
+      </div>
+
+      <!-- Character Breakdown -->
+      <div class="bg-slate-50/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700 rounded-2xl p-4 my-4 flex flex-wrap justify-around text-center text-xs text-slate-600 dark:text-slate-300 gap-2">
+        <div>
+          <span class="font-medium text-slate-400">সঠিক অক্ষর:</span>
+          <strong id="resCorrectChars" class="text-slate-800 dark:text-slate-100 ml-1">0</strong>
+        </div>
+        <div>
+          <span class="font-medium text-slate-400">মোট টাইপকৃত অক্ষর:</span>
+          <strong id="resTotalChars" class="text-slate-800 dark:text-slate-100 ml-1">0</strong>
+        </div>
+        <div>
+          <span class="font-medium text-slate-400">ভুল শব্দ সংখ্যা:</span>
+          <strong id="resMistakes" class="text-rose-600 dark:text-rose-400 ml-1">0</strong>
+        </div>
+      </div>
+
+      <!-- Word-by-Word Audit Diff -->
+      <div class="my-5">
+        <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 flex items-center justify-between">
+          <span>শব্দভিত্তিক অডিট ও ভুল বিশ্লেষণ (Word Audit Diff)</span>
+          <span class="text-[11px] font-normal lowercase text-slate-400">
+            <span class="text-emerald-600 dark:text-emerald-400 font-bold">সবুজ = সঠিক</span>, 
+            <span class="text-rose-600 dark:text-rose-400 font-bold">লাল = ভুল</span>, 
+            <span class="text-amber-600 dark:text-amber-400 font-bold">হলুদ = বাদ পড়া</span>
+          </span>
+        </h4>
+        <div id="resAuditDiff" class="bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 max-h-48 overflow-y-auto leading-relaxed text-sm">
+          <!-- Diff spans injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100 dark:border-slate-800 no-print">
+        <div class="flex gap-2">
+          <button id="copyResultBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span>রেজাল্ট কপি করুন</span>
+          </button>
+          <button id="printResultBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            <span>সনদপত্র প্রিন্ট করুন</span>
+          </button>
+        </div>
+
+        <button id="retryTestBtn" class="px-6 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm transition-all flex items-center gap-1.5 ml-auto">
+          <span>পুনরায় চেষ্টা করুন</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Test History Modal -->
+  <div id="historyModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-800 max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">পূর্ববর্তী পরীক্ষার ইতিহাস (Test History)</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400">আপনার ব্রাউজারে সংরক্ষিত সাম্প্রতিক ফলাফলসমূহ</p>
+        </div>
+        <button id="closeHistoryBtn" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto my-4">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-400 uppercase tracking-wider bg-slate-50 dark:bg-slate-800">
+              <th class="py-2.5 px-4">তারিখ</th>
+              <th class="py-2.5 px-4">ভাষা ও সময়</th>
+              <th class="py-2.5 px-4">নেট গতি</th>
+              <th class="py-2.5 px-4">নির্ভুলতা</th>
+              <th class="py-2.5 px-4">অবস্থা</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody" class="text-sm divide-y divide-slate-100 dark:divide-slate-800">
+            <!-- Rows injected by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <button id="clearHistoryBtn" class="text-xs text-rose-600 dark:text-rose-400 hover:underline font-semibold">
+          ইতিহাস মুছে ফেলুন (Clear History)
+        </button>
+        <button onclick="document.getElementById('historyModal').classList.add('hidden')" class="px-5 py-2 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700">
+          বন্ধ করুন
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bangla Conjuncts Guide Modal -->
+  <div id="conjunctsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 dark:border-slate-800 max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">সরকারি পরীক্ষার প্রয়োজনীয় যুক্তবর্ণ সহায়িকা</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400">বিজয় এবং অভ্র কিবোর্ডে যুক্তবর্ণ লেখার নিয়মাবলী</p>
+        </div>
+        <button id="closeConjunctsBtn" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Search Input -->
+      <div class="my-3">
+        <input type="text" id="conjunctsSearch" placeholder="যুক্তবর্ণ খুঁজুন (যেমন: ক্ষ, ষ্ণ, ক্ত বা ki...)" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Conjuncts Grid -->
+      <div id="conjunctsGrid" class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 p-1">
+        <!-- Rendered by JavaScript -->
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-end">
+        <button onclick="document.getElementById('conjunctsModal').classList.add('hidden')" class="px-5 py-2 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700">
+          বন্ধ করুন
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Print Certificate Container (Hidden on screen, visible during window.print()) -->
+  <div id="certificateArea" class="hidden"></div>
+
+  <!-- Scripts -->
+  <script src="js/passages.js?v=2.0.0"></script>
+  <script src="js/conjuncts.js?v=2.0.0"></script>
+  <script src="js/app.js?v=2.0.0"></script>
+</body>
+</html>
