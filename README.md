@@ -1,5 +1,7 @@
 # BCC Standard Typing Speed Test (বিসিসি টাইপিং স্পিড টেস্ট)
 
+🌐 **Live Demo:** [https://typingtest-steel.vercel.app/](https://typingtest-steel.vercel.app/)
+
 A high-performance, zero-latency static typing speed test and exam simulator web application designed according to Bangladesh Computer Council (BCC) and Bangladesh Government recruitment standards.
 
 Built with **Pure HTML5 + Tailwind CSS + Vanilla JavaScript**. Zero build steps, zero `node_modules`, ready for instant one-click deployment on **Vercel**.
